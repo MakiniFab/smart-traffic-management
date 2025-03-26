@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Traffic Management</title>
+</head>
+<body>
+    <h1>Smart Traffic Management System</h1>
+    <h2>Traffic Status</h2>
+    <p><strong>Lane 1 Cars:</strong> {{ data.lane1_cars }}</p>
+    <p><strong>Lane 2 Cars:</strong> {{ data.lane2_cars }}</p>
+    <p><strong>Traffic Signal Status:</strong> {{ data.signal_status }}</p>
+
+    <h2>Traffic Image</h2>
+    <img src="{{ url_for('static', filename='traffic.jpg') }}" width="600" alt="Traffic Image">
+</body>
+</html>

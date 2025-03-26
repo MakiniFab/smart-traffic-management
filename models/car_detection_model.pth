@@ -1,0 +1,153 @@
+Smart Traffic Management System
+Overview
+The Smart Traffic Management System is an AI-powered application that detects cars in real-time and optimizes traffic flow by dynamically controlling traffic signals. It uses computer vision to analyze traffic images, determine congestion levels, and adjust signals accordingly to reduce wait times and improve efficiency.
+
+Features
+✔️ Real-time Car Detection – Uses OpenCV’s pre-trained models to detect and count vehicles.
+✔️ Dynamic Traffic Signal Control – Adjusts traffic signals based on congestion levels.
+✔️ Web-based Visualization – Provides a simple web interface to display traffic data and signal status.
+✔️ Customizable and Extendable – Can be integrated with live traffic cameras or enhanced with deep learning models like YOLO.
+
+Technologies Used
+Python – Core programming language.
+
+OpenCV – Image processing and car detection.
+
+Flask – Web framework for user interface.
+
+NumPy – Data processing and numerical operations.
+
+TensorFlow/PyTorch (Optional) – Can be used for deep learning-based detection.
+
+Project Folder Structure
+php
+Copy
+Edit
+smart-traffic-management/
+│── app.py                     # Flask web application  
+│── detect_cars.py              # Car detection script using OpenCV  
+│── traffic_signal.py           # Traffic signal control logic  
+│── static/  
+│   ├── traffic.jpg             # Sample traffic image  
+│── templates/  
+│   ├── index.html              # Web UI  
+│── models/  
+│   ├── car_detection_model.pth  # (Optional) Trained deep learning model  
+│── README.md                   # Project documentation  
+│── requirements.txt             # Dependencies  
+Installation and Setup
+1. Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/yourusername/smart-traffic-management.git
+cd smart-traffic-management
+2. Install Dependencies
+Ensure you have Python 3.8+ installed. Then install the required dependencies:
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
+3. Run the Application
+Start the Flask application:
+
+bash
+Copy
+Edit
+python app.py
+Open your web browser and visit:
+http://127.0.0.1:5000/
+
+How It Works
+1. Car Detection (detect_cars.py)
+Reads a traffic image using OpenCV.
+
+Converts the image to grayscale for better feature extraction.
+
+Uses Haar cascades to detect cars.
+
+Draws rectangles around detected vehicles.
+
+Returns the total number of cars detected.
+
+Example Usage
+python
+Copy
+Edit
+from detect_cars import detect_cars
+
+car_count = detect_cars('static/traffic.jpg')
+print(f"Number of cars detected: {car_count}")
+2. Traffic Signal Control (traffic_signal.py)
+Compares the number of cars in two lanes.
+
+Assigns green to the less congested lane and red to the more congested lane.
+
+Helps optimize traffic flow and reduce delays.
+
+Example Usage
+python
+Copy
+Edit
+from traffic_signal import control_traffic_signal
+
+lane1_cars = 10
+lane2_cars = 5
+status = control_traffic_signal(lane1_cars, lane2_cars)
+print(status)
+3. Web Interface (app.py + templates/index.html)
+Displays real-time traffic data, including detected cars and signal status.
+
+Provides a user-friendly visualization of traffic flow.
+
+Web Page Example
+
+Example Output
+Console Output
+yaml
+Copy
+Edit
+Number of cars detected: 12
+Lane 1 is congested. Redirecting cars to Lane 2. (Lane 2: Green, Lane 1: Red)
+Web UI Display
+yaml
+Copy
+Edit
+Smart Traffic Management System
+
+Lane 1 Cars: 12  
+Lane 2 Cars: 6  
+Traffic Signal Status: Lane 2: Green, Lane 1: Red  
+Customization and Extensions
+1. Live Camera Feed Integration
+Modify detect_cars.py to use a webcam instead of a static image:
+
+python
+Copy
+Edit
+cap = cv2.VideoCapture(0)  # 0 for webcam
+2. Deep Learning for Car Detection
+Instead of Haar cascades, use YOLOv5 for more accurate detection:
+
+python
+Copy
+Edit
+from ultralytics import YOLO
+
+model = YOLO("yolov5s.pt")
+results = model.predict('static/traffic.jpg')
+3. Deploy on Cloud
+Host the application on AWS, Heroku, or Google Cloud for real-world accessibility.
+
+Potential Future Improvements
+✔️ Integration with IoT sensors for real-time traffic flow updates.
+✔️ Mobile App Support for displaying live traffic conditions.
+✔️ Machine Learning for Predictive Analysis of congestion trends.
+
+Contributors
+Farbean – Developer
+
+[makinifarbean@gmail.com] – Contact for support
+
+Feel free to fork and contribute to this project! 🚀
